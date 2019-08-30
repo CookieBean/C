@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1543774596 source:/home/cookiebean/Desktop/C/bank_program/main.cpp
+	<iostream>
+	<string.h>
+

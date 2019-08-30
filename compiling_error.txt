@@ -1,0 +1,4 @@
+/home/cookiebean/Desktop/C/Ex.cpp: In function ‘int main()’:
+/home/cookiebean/Desktop/C/Ex.cpp:165:37: error: unable to find numeric literal operator ‘operator""FF’
+   printf("%d %d", sizeof(1), sizeof(5FF);
+                                     ^~~

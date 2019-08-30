@@ -1,0 +1,669 @@
+cookiebean@cookiebean:~$ cd ~/Desktop/C
+cookiebean@cookiebean:~/Desktop/C$ gcc Experiments.c -o Experiments
+Experiments.c: In function ‘main’:
+Experiments.c:18:15: warning: passing argument 1 of ‘fgets’ from incompatible pointer type [-Wincompatible-pointer-types]
+   arr = fgets(stdin, 1);
+               ^~~~~
+In file included from Experiments.c:14:0:
+/usr/include/stdio.h:564:14: note: expected ‘char * restrict’ but argument is of type ‘struct _IO_FILE *’
+ extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
+              ^~~~~
+Experiments.c:18:9: error: too few arguments to function ‘fgets’
+   arr = fgets(stdin, 1);
+         ^~~~~
+In file included from Experiments.c:14:0:
+/usr/include/stdio.h:564:14: note: declared here
+ extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
+              ^~~~~
+cookiebean@cookiebean:~/Desktop/C$ ~/.Experiments
+bash: /home/cookiebean/.Experiments: No such file or directory
+cookiebean@cookiebean:~/Desktop/C$ ~/Experiments
+bash: /home/cookiebean/Experiments: No such file or directory
+cookiebean@cookiebean:~/Desktop/C$ ./Experiments
+-127
+cookiebean@cookiebean:~/Desktop/C$ gcc -o Experiments.c Experiments
+/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o: In function `_start':
+(.text+0x20): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+cookiebean@cookiebean:~/Desktop/C$ gcc -o Experiments Experiments.c
+gcc: error: Experiments.c: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+cookiebean@cookiebean:~/Desktop/C$ gcc -o Experiments.c Experiments
+/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o: In function `_start':
+(.text+0x20): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+cookiebean@cookiebean:~/Desktop/C$ gcc Experiments.c -o Experiments
+gcc: error: Experiments.c: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+cookiebean@cookiebean:~/Desktop/C$ gcc -o Ex.c Ex
+gcc: error: Ex: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+cookiebean@cookiebean:~/Desktop/C$ gcc Ex.c -o Ex
+cookiebean@cookiebean:~/Desktop/C$ .Ex
+.Ex: command not found
+cookiebean@cookiebean:~/Desktop/C$ /.Ex
+bash: /.Ex: No such file or directory
+cookiebean@cookiebean:~/Desktop/C$ ./Ex
+Hello World
+cookiebean@cookiebean:~/Desktop/C$ gdb ./Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./Ex...(no debugging symbols found)...done.
+(gdb) quit
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+(gdb) disas main
+Dump of assembler code for function main:
+   0x000000000000063a <+0>:	push   %rbp
+   0x000000000000063b <+1>:	mov    %rsp,%rbp
+   0x000000000000063e <+4>:	lea    0x9f(%rip),%rdi        # 0x6e4
+   0x0000000000000645 <+11>:	callq  0x510 <puts@plt>
+   0x000000000000064a <+16>:	mov    $0x0,%eax
+   0x000000000000064f <+21>:	pop    %rbp
+   0x0000000000000650 <+22>:	retq   
+End of assembler dump.
+(gdb) x/10x 0x6e4
+0x6e4:	0x6c6c6548	0x6f57206f	0x00646c72	0x3b031b01
+0x6f4:	0x0000003c	0x00000006	0xfffffe10	0x00000088
+0x704:	0xfffffe30	0x000000b0
+(gdb) d outs
+warning: bad breakpoint number at or near '0'
+(gdb) d puts
+warning: bad breakpoint number at or near '0'
+(gdb) d puts@plt
+warning: bad breakpoint number at or near '0'
+(gdb) got
+Command requires an argument.
+(gdb) got
+Command requires an argument.
+(gdb) start
+Temporary breakpoint 1 at 0x63e
+Starting program: /home/cookiebean/Desktop/C/Ex 
+
+Temporary breakpoint 1, 0x000055555555463e in main ()
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 22997] will be killed.
+
+Quit anyway? (y or n) y
+cookiebean@cookiebean:~/Desktop/C$ sudo apt-get peda
+[sudo] password for cookiebean: 
+E: Invalid operation peda
+cookiebean@cookiebean:~/Desktop/C$ git clone https://github.com/longld/peda.git ~/peda
+Cloning into '/home/cookiebean/peda'...
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 351 (delta 0), reused 0 (delta 0), pack-reused 347
+Receiving objects: 100% (351/351), 320.83 KiB | 76.00 KiB/s, done.
+Resolving deltas: 100% (217/217), done.
+cookiebean@cookiebean:~/Desktop/C$ echo "source ~/peda/peda.py">> ~/.gdbinit
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ start
+
+[----------------------------------registers-----------------------------------]
+RAX: 0x55555555463a (<main>:	push   rbp)
+RBX: 0x0 
+RCX: 0x555555554660 (<__libc_csu_init>:	push   r15)
+RDX: 0x7fffffffdda8 --> 0x7fffffffe15b ("CLUTTER_IM_MODULE=xim")
+RSI: 0x7fffffffdd98 --> 0x7fffffffe13d ("/home/cookiebean/Desktop/C/Ex")
+RDI: 0x1 
+RBP: 0x7fffffffdcb0 --> 0x555555554660 (<__libc_csu_init>:	push   r15)
+RSP: 0x7fffffffdcb0 --> 0x555555554660 (<__libc_csu_init>:	push   r15)
+RIP: 0x55555555463e (<main+4>:	lea    rdi,[rip+0x9f]        # 0x5555555546e4)
+R8 : 0x7ffff7dd0d80 --> 0x0 
+R9 : 0x7ffff7dd0d80 --> 0x0 
+R10: 0x2 
+R11: 0x7 
+R12: 0x555555554530 (<_start>:	xor    ebp,ebp)
+R13: 0x7fffffffdd90 --> 0x1 
+R14: 0x0 
+R15: 0x0
+EFLAGS: 0x246 (carry PARITY adjust ZERO sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x555555554635 <frame_dummy+5>:	
+    jmp    0x5555555545a0 <register_tm_clones>
+   0x55555555463a <main>:	push   rbp
+   0x55555555463b <main+1>:	mov    rbp,rsp
+=> 0x55555555463e <main+4>:	lea    rdi,[rip+0x9f]        # 0x5555555546e4
+   0x555555554645 <main+11>:	call   0x555555554510 <puts@plt>
+   0x55555555464a <main+16>:	mov    eax,0x0
+   0x55555555464f <main+21>:	pop    rbp
+   0x555555554650 <main+22>:	ret
+[------------------------------------stack-------------------------------------]
+0000| 0x7fffffffdcb0 --> 0x555555554660 (<__libc_csu_init>:	push   r15)
+0008| 0x7fffffffdcb8 --> 0x7ffff7a05b97 (<__libc_start_main+231>:	mov    edi,eax)
+0016| 0x7fffffffdcc0 --> 0x1 
+0024| 0x7fffffffdcc8 --> 0x7fffffffdd98 --> 0x7fffffffe13d ("/home/cookiebean/Desktop/C/Ex")
+0032| 0x7fffffffdcd0 --> 0x100008000 
+0040| 0x7fffffffdcd8 --> 0x55555555463a (<main>:	push   rbp)
+0048| 0x7fffffffdce0 --> 0x0 
+0056| 0x7fffffffdce8 --> 0xa3c1364e3201e64 
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+
+Temporary breakpoint 1, 0x000055555555463e in main ()
+gdb-peda$ 
+[1]+  Stopped                 gdb Ex
+cookiebean@cookiebean:~/Desktop/C$ gcc Ex.c -o Ex
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ d main
+warning: bad breakpoint number at or near '0'
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x000000000000064a <+0>:	push   rbp
+   0x000000000000064b <+1>:	mov    rbp,rsp
+   0x000000000000064e <+4>:	mov    esi,0xb
+   0x0000000000000653 <+9>:	lea    rdi,[rip+0x9a]        # 0x6f4
+   0x000000000000065a <+16>:	mov    eax,0x0
+   0x000000000000065f <+21>:	call   0x520 <printf@plt>
+   0x0000000000000664 <+26>:	mov    eax,0x0
+   0x0000000000000669 <+31>:	pop    rbp
+   0x000000000000066a <+32>:	ret    
+End of assembler dump.
+gdb-peda$ quit
+cookiebean@cookiebean:~/Desktop/C$ ./Ex
+11
+cookiebean@cookiebean:~/Desktop/C$ gcc Ex.c -o Ex
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x000000000000064a <+0>:	push   rbp
+   0x000000000000064b <+1>:	mov    rbp,rsp
+   0x000000000000064e <+4>:	mov    esi,0xb
+   0x0000000000000653 <+9>:	lea    rdi,[rip+0x9a]        # 0x6f4
+   0x000000000000065a <+16>:	mov    eax,0x0
+   0x000000000000065f <+21>:	call   0x520 <printf@plt>
+   0x0000000000000664 <+26>:	mov    eax,0x0
+   0x0000000000000669 <+31>:	pop    rbp
+   0x000000000000066a <+32>:	ret    
+End of assembler dump.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x000000000000064a <+0>:	push   rbp
+   0x000000000000064b <+1>:	mov    rbp,rsp
+   0x000000000000064e <+4>:	mov    esi,0xb
+   0x0000000000000653 <+9>:	lea    rdi,[rip+0x9a]        # 0x6f4
+   0x000000000000065a <+16>:	mov    eax,0x0
+   0x000000000000065f <+21>:	call   0x520 <printf@plt>
+   0x0000000000000664 <+26>:	mov    eax,0x0
+   0x0000000000000669 <+31>:	pop    rbp
+   0x000000000000066a <+32>:	ret    
+End of assembler dump.
+gdb-peda$ quit
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x000000000000071a <+0>:	push   rbp
+   0x000000000000071b <+1>:	mov    rbp,rsp
+   0x000000000000071e <+4>:	sub    rsp,0x10
+   0x0000000000000722 <+8>:	mov    rax,QWORD PTR fs:0x28
+   0x000000000000072b <+17>:	mov    QWORD PTR [rbp-0x8],rax
+   0x000000000000072f <+21>:	xor    eax,eax
+   0x0000000000000731 <+23>:	lea    rdx,[rbp-0xc]
+   0x0000000000000735 <+27>:	lea    rax,[rbp-0x10]
+   0x0000000000000739 <+31>:	mov    rsi,rax
+   0x000000000000073c <+34>:	lea    rdi,[rip+0xd1]        # 0x814
+   0x0000000000000743 <+41>:	mov    eax,0x0
+   0x0000000000000748 <+46>:	call   0x5f0 <__isoc99_scanf@plt>
+   0x000000000000074d <+51>:	mov    edx,DWORD PTR [rbp-0x10]
+   0x0000000000000750 <+54>:	mov    eax,DWORD PTR [rbp-0xc]
+   0x0000000000000753 <+57>:	add    eax,edx
+   0x0000000000000755 <+59>:	mov    esi,eax
+   0x0000000000000757 <+61>:	lea    rdi,[rip+0xbc]        # 0x81a
+   0x000000000000075e <+68>:	mov    eax,0x0
+   0x0000000000000763 <+73>:	call   0x5e0 <printf@plt>
+   0x0000000000000768 <+78>:	mov    eax,0x0
+   0x000000000000076d <+83>:	mov    rcx,QWORD PTR [rbp-0x8]
+   0x0000000000000771 <+87>:	xor    rcx,QWORD PTR fs:0x28
+   0x000000000000077a <+96>:	je     0x781 <main+103>
+   0x000000000000077c <+98>:	call   0x5d0 <__stack_chk_fail@plt>
+   0x0000000000000781 <+103>:	leave  
+   0x0000000000000782 <+104>:	ret    
+End of assembler dump.
+gdb-peda$ x/10x 0x814
+0x814:	0x25206425	0x64250064	Cannot access memory at address 0x81e
+gdb-peda$ x/10x *0x814
+0x25206425:	Cannot access memory at address 0x25206425
+gdb-peda$ x/10x 0x814
+0x814:	0x25206425	0x64250064	Cannot access memory at address 0x81e
+gdb-peda$ check sec
+Ambiguous command "check sec": checkpoint, checksec.
+gdb-peda$ checksec
+CANARY    : ENABLED
+FORTIFY   : disabled
+NX        : ENABLED
+PIE       : ENABLED
+RELRO     : FULL
+gdb-peda$ quit
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x0000000000000655 <+0>:	push   rbp
+   0x0000000000000656 <+1>:	mov    rbp,rsp
+   0x0000000000000659 <+4>:	mov    eax,0x0
+   0x000000000000065e <+9>:	call   0x64a <func>
+   0x0000000000000663 <+14>:	mov    esi,eax
+   0x0000000000000665 <+16>:	lea    rdi,[rip+0x98]        # 0x704
+   0x000000000000066c <+23>:	mov    eax,0x0
+   0x0000000000000671 <+28>:	call   0x520 <printf@plt>
+   0x0000000000000676 <+33>:	mov    eax,0x0
+   0x000000000000067b <+38>:	pop    rbp
+   0x000000000000067c <+39>:	ret    
+End of assembler dump.
+gdb-peda$ pd func
+Dump of assembler code for function func:
+   0x000000000000064a <+0>:	push   rbp
+   0x000000000000064b <+1>:	mov    rbp,rsp
+   0x000000000000064e <+4>:	mov    eax,0x1
+   0x0000000000000653 <+9>:	pop    rbp
+   0x0000000000000654 <+10>:	ret    
+End of assembler dump.
+gdb-peda$ pd 0x64a
+Dump of assembler code from 0x64a to 0x66a::	Dump of assembler code from 0x64a to 0x66a:
+   0x000000000000064a <func+0>:	push   rbp
+   0x000000000000064b <func+1>:	mov    rbp,rsp
+   0x000000000000064e <func+4>:	mov    eax,0x1
+   0x0000000000000653 <func+9>:	pop    rbp
+   0x0000000000000654 <func+10>:	ret    
+   0x0000000000000655 <main+0>:	push   rbp
+   0x0000000000000656 <main+1>:	mov    rbp,rsp
+   0x0000000000000659 <main+4>:	mov    eax,0x0
+   0x000000000000065e <main+9>:	call   0x64a <func>
+   0x0000000000000663 <main+14>:	mov    esi,eax
+   0x0000000000000665 <main+16>:	lea    rdi,[rip+0x98]        # 0x704
+End of assembler dump.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x0000000000000655 <+0>:	push   rbp
+   0x0000000000000656 <+1>:	mov    rbp,rsp
+   0x0000000000000659 <+4>:	mov    eax,0x0
+   0x000000000000065e <+9>:	call   0x64a <func>
+   0x0000000000000663 <+14>:	mov    esi,eax
+   0x0000000000000665 <+16>:	lea    rdi,[rip+0x98]        # 0x704
+   0x000000000000066c <+23>:	mov    eax,0x0
+   0x0000000000000671 <+28>:	call   0x520 <printf@plt>
+   0x0000000000000676 <+33>:	mov    eax,0x0
+   0x000000000000067b <+38>:	pop    rbp
+   0x000000000000067c <+39>:	ret    
+End of assembler dump.
+gdb-peda$ 
+[2]+  Stopped                 gdb Ex
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x0000000000000725 <+0>:	push   rbp
+   0x0000000000000726 <+1>:	mov    rbp,rsp
+   0x0000000000000729 <+4>:	sub    rsp,0x10
+   0x000000000000072d <+8>:	mov    rax,QWORD PTR fs:0x28
+   0x0000000000000736 <+17>:	mov    QWORD PTR [rbp-0x8],rax
+   0x000000000000073a <+21>:	xor    eax,eax
+   0x000000000000073c <+23>:	lea    rdx,[rbp-0xc]
+   0x0000000000000740 <+27>:	lea    rax,[rbp-0x10]
+   0x0000000000000744 <+31>:	mov    rsi,rax
+   0x0000000000000747 <+34>:	lea    rdi,[rip+0xc6]        # 0x814
+   0x000000000000074e <+41>:	mov    eax,0x0
+   0x0000000000000753 <+46>:	call   0x5f0 <__isoc99_scanf@plt>
+   0x0000000000000758 <+51>:	mov    eax,0x0
+   0x000000000000075d <+56>:	call   0x71a <func>
+   0x0000000000000762 <+61>:	mov    esi,eax
+   0x0000000000000764 <+63>:	lea    rdi,[rip+0xaf]        # 0x81a
+   0x000000000000076b <+70>:	mov    eax,0x0
+   0x0000000000000770 <+75>:	call   0x5e0 <printf@plt>
+   0x0000000000000775 <+80>:	mov    eax,0x0
+   0x000000000000077a <+85>:	mov    rcx,QWORD PTR [rbp-0x8]
+   0x000000000000077e <+89>:	xor    rcx,QWORD PTR fs:0x28
+   0x0000000000000787 <+98>:	je     0x78e <main+105>
+   0x0000000000000789 <+100>:	call   0x5d0 <__stack_chk_fail@plt>
+   0x000000000000078e <+105>:	leave  
+   0x000000000000078f <+106>:	ret    
+End of assembler dump.
+gdb-peda$ x/10x main+80
+0x775 <main+80>:	0x000000b8	0x4d8b4800	0x334864f8	0x0028250c
+0x785 <main+96>:	0x05740000	0xfffe42e8	0x41c3c9ff	0x49564157
+0x795 <__libc_csu_init+5>:	0x5541d789	0x8d4c5441
+gdb-peda$ x/10x main+51
+0x758 <main+51>:	0x000000b8	0xffb8e800	0xc689ffff	0xaf3d8d48
+0x768 <main+67>:	0xb8000000	0x00000000	0xfffe6be8	0x0000b8ff
+0x778 <main+83>:	0x8b480000	0x4864f84d
+gdb-peda$ x/10x main+85
+0x77a <main+85>:	0xf84d8b48	0x0c334864	0x00002825	0xe8057400
+0x78a <main+101>:	0xfffffe42	0x5741c3c9	0x89495641	0x415541d7
+0x79a <__libc_csu_init+10>:	0x258d4c54	0x00200606
+gdb-peda$ x/10x main+70
+0x76b <main+70>:	0x000000b8	0xfe6be800	0x00b8ffff	0x48000000
+0x77b <main+86>:	0x64f84d8b	0x250c3348	0x00000028	0x42e80574
+0x78b <main+102>:	0xc9fffffe	0x415741c3
+gdb-peda$ 
+0x793 <__libc_csu_init+3>:	0xd7894956
+gdb-peda$ 
+[3]+  Stopped                 gdb Ex
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x0000000000000725 <+0>:	push   rbp
+   0x0000000000000726 <+1>:	mov    rbp,rsp
+   0x0000000000000729 <+4>:	sub    rsp,0x10
+   0x000000000000072d <+8>:	mov    rax,QWORD PTR fs:0x28
+   0x0000000000000736 <+17>:	mov    QWORD PTR [rbp-0x8],rax
+   0x000000000000073a <+21>:	xor    eax,eax
+   0x000000000000073c <+23>:	lea    rdx,[rbp-0xc]
+   0x0000000000000740 <+27>:	lea    rax,[rbp-0x10]
+   0x0000000000000744 <+31>:	mov    rsi,rax
+   0x0000000000000747 <+34>:	lea    rdi,[rip+0xc6]        # 0x814
+   0x000000000000074e <+41>:	mov    eax,0x0
+   0x0000000000000753 <+46>:	call   0x5f0 <__isoc99_scanf@plt>
+   0x0000000000000758 <+51>:	lea    rdi,[rip+0xbb]        # 0x81a
+   0x000000000000075f <+58>:	mov    eax,0x0
+   0x0000000000000764 <+63>:	call   0x5e0 <printf@plt>
+   0x0000000000000769 <+68>:	mov    eax,0x0
+   0x000000000000076e <+73>:	mov    rcx,QWORD PTR [rbp-0x8]
+   0x0000000000000772 <+77>:	xor    rcx,QWORD PTR fs:0x28
+   0x000000000000077b <+86>:	je     0x782 <main+93>
+   0x000000000000077d <+88>:	call   0x5d0 <__stack_chk_fail@plt>
+   0x0000000000000782 <+93>:	leave  
+   0x0000000000000783 <+94>:	ret    
+End of assembler dump.
+gdb-peda$ x/10x 0x814
+0x814:	0x25206425	0x78250064	0x20782520	0x25207825
+0x824:	0x78252078	0x20782520	0x25207825	Cannot access memory at address 0x832
+gdb-peda$ b *main+68
+Breakpoint 1 at 0x769
+gdb-peda$ r
+Starting program: /home/cookiebean/Desktop/C/Ex 
+4 5
+
+[----------------------------------registers-----------------------------------]
+RAX: 0x25 ('%')
+RBX: 0x0 
+RCX: 0x0 
+RDX: 0x0 
+RSI: 0x555555554831 --> 0x403b031b01000000 
+RDI: 0x7ffff7dd0760 --> 0xfbad2a84 
+RBP: 0x7fffffffdcb0 --> 0x555555554790 (<__libc_csu_init>:	push   r15)
+RSP: 0x7fffffffdca0 --> 0x500000004 
+RIP: 0x555555554769 (<main+68>:	mov    eax,0x0)
+R8 : 0x0 
+R9 : 0x0 
+R10: 0x0 
+R11: 0x555555554831 --> 0x403b031b01000000 
+R12: 0x555555554610 (<_start>:	xor    ebp,ebp)
+R13: 0x7fffffffdd90 --> 0x1 
+R14: 0x0 
+R15: 0x0
+EFLAGS: 0x202 (carry parity adjust zero sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x555555554758 <main+51>:	lea    rdi,[rip+0xbb]        # 0x55555555481a
+   0x55555555475f <main+58>:	mov    eax,0x0
+   0x555555554764 <main+63>:	call   0x5555555545e0 <printf@plt>
+=> 0x555555554769 <main+68>:	mov    eax,0x0
+   0x55555555476e <main+73>:	mov    rcx,QWORD PTR [rbp-0x8]
+   0x555555554772 <main+77>:	xor    rcx,QWORD PTR fs:0x28
+   0x55555555477b <main+86>:	je     0x555555554782 <main+93>
+   0x55555555477d <main+88>:	call   0x5555555545d0 <__stack_chk_fail@plt>
+[------------------------------------stack-------------------------------------]
+0000| 0x7fffffffdca0 --> 0x500000004 
+0008| 0x7fffffffdca8 --> 0xc2187c3c5da46500 
+0016| 0x7fffffffdcb0 --> 0x555555554790 (<__libc_csu_init>:	push   r15)
+0024| 0x7fffffffdcb8 --> 0x7ffff7a05b97 (<__libc_start_main+231>:	mov    edi,eax)
+0032| 0x7fffffffdcc0 --> 0x1 
+0040| 0x7fffffffdcc8 --> 0x7fffffffdd98 --> 0x7fffffffe13d ("/home/cookiebean/Desktop/C/Ex")
+0048| 0x7fffffffdcd0 --> 0x100008000 
+0056| 0x7fffffffdcd8 --> 0x555555554725 (<main>:	push   rbp)
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+
+Breakpoint 1, 0x0000555555554769 in main ()
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x0000555555554725 <+0>:	push   rbp
+   0x0000555555554726 <+1>:	mov    rbp,rsp
+   0x0000555555554729 <+4>:	sub    rsp,0x10
+   0x000055555555472d <+8>:	mov    rax,QWORD PTR fs:0x28
+   0x0000555555554736 <+17>:	mov    QWORD PTR [rbp-0x8],rax
+   0x000055555555473a <+21>:	xor    eax,eax
+   0x000055555555473c <+23>:	lea    rdx,[rbp-0xc]
+   0x0000555555554740 <+27>:	lea    rax,[rbp-0x10]
+   0x0000555555554744 <+31>:	mov    rsi,rax
+   0x0000555555554747 <+34>:	lea    rdi,[rip+0xc6]        # 0x555555554814
+   0x000055555555474e <+41>:	mov    eax,0x0
+   0x0000555555554753 <+46>:	call   0x5555555545f0 <__isoc99_scanf@plt>
+   0x0000555555554758 <+51>:	lea    rdi,[rip+0xbb]        # 0x55555555481a
+   0x000055555555475f <+58>:	mov    eax,0x0
+   0x0000555555554764 <+63>:	call   0x5555555545e0 <printf@plt>
+=> 0x0000555555554769 <+68>:	mov    eax,0x0
+   0x000055555555476e <+73>:	mov    rcx,QWORD PTR [rbp-0x8]
+   0x0000555555554772 <+77>:	xor    rcx,QWORD PTR fs:0x28
+   0x000055555555477b <+86>:	je     0x555555554782 <main+93>
+   0x000055555555477d <+88>:	call   0x5555555545d0 <__stack_chk_fail@plt>
+   0x0000555555554782 <+93>:	leave  
+   0x0000555555554783 <+94>:	ret    
+End of assembler dump.
+gdb-peda$ x/10x rbp-0xc
+No symbol "rbp" in current context.
+gdb-peda$ c
+Continuing.
+2 f7dd18d0 18 0 0 4 5da46500 55554790[Inferior 1 (process 24175) exited normally]
+Warning: not running
+gdb-peda$ quit
+cookiebean@cookiebean:~/Desktop/C$ gdb Ex
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from Ex...(no debugging symbols found)...done.
+gdb-peda$ pd main
+Dump of assembler code for function main:
+   0x0000000000000725 <+0>:	push   rbp
+   0x0000000000000726 <+1>:	mov    rbp,rsp
+   0x0000000000000729 <+4>:	sub    rsp,0x10
+   0x000000000000072d <+8>:	mov    rax,QWORD PTR fs:0x28
+   0x0000000000000736 <+17>:	mov    QWORD PTR [rbp-0x8],rax
+   0x000000000000073a <+21>:	xor    eax,eax
+   0x000000000000073c <+23>:	lea    rdx,[rbp-0xc]
+   0x0000000000000740 <+27>:	lea    rax,[rbp-0x10]
+   0x0000000000000744 <+31>:	mov    rsi,rax
+   0x0000000000000747 <+34>:	lea    rdi,[rip+0xc6]        # 0x814
+   0x000000000000074e <+41>:	mov    eax,0x0
+   0x0000000000000753 <+46>:	call   0x5f0 <__isoc99_scanf@plt>
+   0x0000000000000758 <+51>:	lea    rdi,[rip+0xbb]        # 0x81a
+   0x000000000000075f <+58>:	mov    eax,0x0
+   0x0000000000000764 <+63>:	call   0x5e0 <printf@plt>
+   0x0000000000000769 <+68>:	mov    eax,0x0
+   0x000000000000076e <+73>:	mov    rcx,QWORD PTR [rbp-0x8]
+   0x0000000000000772 <+77>:	xor    rcx,QWORD PTR fs:0x28
+   0x000000000000077b <+86>:	je     0x782 <main+93>
+   0x000000000000077d <+88>:	call   0x5d0 <__stack_chk_fail@plt>
+   0x0000000000000782 <+93>:	leave  
+   0x0000000000000783 <+94>:	ret    
+End of assembler dump.
+gdb-peda$ start
+
+[----------------------------------registers-----------------------------------]
+RAX: 0x555555554725 (<main>:	push   rbp)
+RBX: 0x0 
+RCX: 0x555555554790 (<__libc_csu_init>:	push   r15)
+RDX: 0x7fffffffdda8 --> 0x7fffffffe15b ("CLUTTER_IM_MODULE=xim")
+RSI: 0x7fffffffdd98 --> 0x7fffffffe13d ("/home/cookiebean/Desktop/C/Ex")
+RDI: 0x1 
+RBP: 0x7fffffffdcb0 --> 0x555555554790 (<__libc_csu_init>:	push   r15)
+RSP: 0x7fffffffdcb0 --> 0x555555554790 (<__libc_csu_init>:	push   r15)
+RIP: 0x555555554729 (<main+4>:	sub    rsp,0x10)
+R8 : 0x7ffff7dd0d80 --> 0x0 
+R9 : 0x7ffff7dd0d80 --> 0x0 
+R10: 0x2 
+R11: 0x7 
+R12: 0x555555554610 (<_start>:	xor    ebp,ebp)
+R13: 0x7fffffffdd90 --> 0x1 
+R14: 0x0 
+R15: 0x0
+EFLAGS: 0x246 (carry PARITY adjust ZERO sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x555555554724 <func+10>:	ret    
+   0x555555554725 <main>:	push   rbp
+   0x555555554726 <main+1>:	mov    rbp,rsp
+=> 0x555555554729 <main+4>:	sub    rsp,0x10
+   0x55555555472d <main+8>:	mov    rax,QWORD PTR fs:0x28
+   0x555555554736 <main+17>:	mov    QWORD PTR [rbp-0x8],rax
+   0x55555555473a <main+21>:	xor    eax,eax
+   0x55555555473c <main+23>:	lea    rdx,[rbp-0xc]
+[------------------------------------stack-------------------------------------]
+0000| 0x7fffffffdcb0 --> 0x555555554790 (<__libc_csu_init>:	push   r15)
+0008| 0x7fffffffdcb8 --> 0x7ffff7a05b97 (<__libc_start_main+231>:	mov    edi,eax)
+0016| 0x7fffffffdcc0 --> 0x1 
+0024| 0x7fffffffdcc8 --> 0x7fffffffdd98 --> 0x7fffffffe13d ("/home/cookiebean/Desktop/C/Ex")
+0032| 0x7fffffffdcd0 --> 0x100008000 
+0040| 0x7fffffffdcd8 --> 0x555555554725 (<main>:	push   rbp)
+0048| 0x7fffffffdce0 --> 0x0 
+0056| 0x7fffffffdce8 --> 0xd5d5c9bc1f229dc8 
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+
+Temporary breakpoint 1, 0x0000555555554729 in main ()
+gdb-peda$ 
+

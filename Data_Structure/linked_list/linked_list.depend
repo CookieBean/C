@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1547657809 source:/home/cookiebean/Desktop/C/linked_list/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
