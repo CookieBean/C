@@ -27,7 +27,47 @@
 
 // #include <stdio.h>
 // int count[300], a[300][3][3];
+// int main() {#include <bits/stdc++.h>
+// using namespace std;
+// int arr[1048577], ans = INT_MAX;
+// void dfs(int k, int cnt) {
+//   // printf("%d\n", k);
+//   if(k == 0) {
+//     if(cnt < ans) ans = cnt;
+//     return;
+//   }
+//   int j = k;
+//   j = k - (k%4) + 3-k%4;
+//   if(!arr[j]) {
+//     arr[j] = 1;
+//     dfs(j, cnt+1);
+//   }
+//   // printf("passed\n");
+//   for(int i=0;i<18;i++) {
+//     int n = k;
+//     n -= ((n>>i)%8)<<i;
+//     n += (7-(n>>i)%8)<<i;
+//     printf("n : %d, %d, %d\n", n, ((n>>i)%8)<<i, (7-(n>>i)%8)<<i);
+//     if(!arr[n]) {
+//       arr[n] = 1;
+//       dfs(n, cnt+1);
+//     }
+//   }
+// }
 // int main() {
+//   int n = 0;
+//   for(int i=1;i<=20;i++) {
+//     int x;
+//     scanf("%d", &x);
+//     n = n<<1;
+//     n += x;
+//   }
+//   printf("%d\n", n);
+//   arr[n] = 1;
+//   dfs(n, 0);
+//   printf("%d", ans);
+// }
+
 //   int n, k;
 //   char m, final;
 //   scanf("%d", &n);
@@ -158,3 +198,20 @@
 //   sort(arr+1, arr+n+1, cmp);
 //   for(int i=1;i<=n;i++) printf("%d ", arr[i]);
 // }
+
+#include <bits/stdc++.h>
+using namespace std;
+int arr[11], cnt;
+int main() {
+  int money, k;
+  scanf("%d %d", &money, &k);
+  for(int i=1;i<=k;i++) scanf("%d", &arr[i]);
+  while(money) {
+    int i;
+    for(i=1;i<=k && money >= arr[i];i++);
+    i--;
+    money -= arr[i];
+    cnt++;
+  }
+  printf("%d", cnt);
+}
